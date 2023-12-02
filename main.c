@@ -30,6 +30,7 @@ int main()
     /*Fill two lists with all the data inside databases*/
     ST_node_t *_accountsListPtr = NULL;
     ST_node_t *_transactionsListPtr = NULL;
+    
     _accountsFileErrorState = loadAccountsData(&_accountsListPtr);
     _transactionsFileErrorState = loadTransactionsData(&_transactionsListPtr);
 
