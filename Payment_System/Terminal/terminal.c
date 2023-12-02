@@ -55,8 +55,6 @@ EN_terminalError_t getTransactionDate(ST_terminalData_t *termData)
     termData -> transactionDate[6] = tm.tm_year % 10 + '0';
     termData -> transactionDate[10] = '\0';
 
-    printf("%s\n", termData -> transactionDate);
-
     /*Return error state*/
     return _terminalError;
 }
@@ -81,9 +79,13 @@ EN_terminalError_t isCardExpired(ST_cardData_t *cardData, ST_terminalData_t* ter
     _currentYear = (termData -> transactionDate[8] - '0') * 10 + (termData -> transactionDate[9] - '0');
 
     /*Ensure that the card is not expired*/
-    if(_expiryDateYear >= _currentYear)
+    if(_expiryDateYear > _currentYear)
     {
-        if(_expiryDateMonth <= _currentMonth)
+        _terminalError = TERMINAL_OK;
+    }
+    else if(_expiryDateYear == _currentYear)
+    {
+        if(_expiryDateMonth < _currentMonth)
         {
             _terminalError = EXPIRED_CARD;
         }
