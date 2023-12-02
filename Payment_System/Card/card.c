@@ -121,7 +121,6 @@ EN_cardError_t getCardPAN(ST_cardData_t *cardData)
         {
             if(!((cardData -> primaryAccountNumber[_counter] <= '9') && (cardData -> primaryAccountNumber[_counter] >= '0')))
             {
-                printf("h%dhh", _counter);
                 _cardError = WRONG_PAN;
                 break;
             }
